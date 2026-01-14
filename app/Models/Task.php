@@ -9,16 +9,18 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'description',
-        'completed',
-        'user_id',
-    ];
+    protected $fillable = ['title', 'description', 'mode', 'user_id', 'project_id',];
 
-    // العلاقة: كل مهمة مرتبطة بمستخدم واحد
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
     }
 }
